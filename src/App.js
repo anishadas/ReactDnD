@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Description from './components/Description';
+import PartsSelection from './components/PartsSelection';
+import Assembly from './components/Assembly';
+import FinalView from './components/FinalView';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <DndProvider backend={HTML5Backend}>
+        <Routes>
+          <Route path='/' exact component={<Description />} />
+          <Route path='/select-parts' component={<PartsSelection />} />
+          <Route path="/assembly">
+            <Assembly />
+          </Route>
+          <Route path="/final-view">
+            <FinalView  />
+          </Route>
+        </Routes>
+      </DndProvider>
+    </BrowserRouter>
   );
 }
 
