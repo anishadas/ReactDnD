@@ -6,21 +6,19 @@ import Description from './components/Description';
 import PartsSelection from './components/PartsSelection';
 import Assembly from './components/Assembly';
 import FinalView from './components/FinalView';
+
+
 function App() {
   return (
     <BrowserRouter>
-      <DndProvider backend={HTML5Backend}>
+    
         <Routes>
-          <Route path='/' exact component={<Description />} />
-          <Route path='/select-parts' component={<PartsSelection />} />
-          <Route path="/assembly">
-            <Assembly />
-          </Route>
-          <Route path="/final-view">
-            <FinalView  />
-          </Route>
+          <Route path='/' exact element={<Description />} />
+          <Route path='/select-parts' element={<PartsSelection />} />
+          <Route path="/assembly" element={<Assembly/>} />
+        <Route path="/final-view" element={<FinalView />} />
         </Routes>
-      </DndProvider>
+    
     </BrowserRouter>
   );
 }
