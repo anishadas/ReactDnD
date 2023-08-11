@@ -10,11 +10,15 @@ export const UserContext = React.createContext();
 
 const Context = ({ children }) => {
     const [selectedParts, setSelectedParts] = useState([]);
-    // let selectedPartsData = [];
+    const [assembledParts, setAssembledParts] = useState([]);
+
     const togglePartSelection = (partId) => {
-        // const selectedObj = partsData.find(part => part.id == partId);
-        // setSelectedParts([...selectedParts,selectedObj]);
-        if (selectedParts.includes(partId)) {
+        
+        let partIds=partsData.map(part=>part.id)
+        if (partId === "all") {
+            setSelectedParts(partIds);
+        }
+        else if (selectedParts.includes(partId)) {
             setSelectedParts(selectedParts.filter((id) => id !== partId));
         } else {
             setSelectedParts([...selectedParts, partId]);
@@ -32,11 +36,55 @@ const Context = ({ children }) => {
         { id: 'fence', name: 'Fence', image: fence },
     ];
 
+    const onDragEnd = (result) => {
+        console.log(result)
+        if (!result.destination) {
+            return;
+        }
+
+        const { source, destination } = result;
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return;
+        }
+        let add, active = selectedParts, assembled = assembledParts;
+        if (source.droppableId === "selectedParts") {
+            add = active[source.index];
+            console.log("add", add);
+            active.splice(source.index, 1);
+        } else {
+            add = assembled[source.index];
+            console.log("add", add);
+            assembled.splice(source.index, 1);
+        }
+
+        if (destination.droppableId === "selectedParts") {
+            active.splice(destination.index, 0, add);
+        } else {
+            assembled.splice(destination.index, 0, add);
+        }
+        setAssembledParts(assembled);
+        setSelectedParts(active);
+    }
+
+    const selectedPartDetails = {
+        windows: { name: 'Windows', image: window },
+        walls: { name: 'Walls', image: wall },
+        doors: { name: 'Doors', image: door },
+        roof: { name: 'Roof', image: roof },
+        garage: { name: 'Garage', image: garage },
+        fence: { name: 'Fence', image: fence },
+        stairs: { name: 'Stairs', image: stairs },
+    };
+
     let value = {
         partsData,
         selectedParts,
         togglePartSelection,
         setSelectedParts,
+        assembledParts,
+        setAssembledParts,
+        onDragEnd,
+        selectedPartDetails
     }
     return (
         <UserContext.Provider value={value}>

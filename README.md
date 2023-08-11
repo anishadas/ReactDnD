@@ -1,5 +1,5 @@
 Installations:
-- npm i react-dnd
-- npm i react-dnd-html5-backend
+- npm i react-beautiful-dnd : for drag & drop
 - npm i react-router react-dom react-router-dom
-- pm install styled-components
+- npm i react-multi-carousel : for adding slides
+- npm install framer-motion
