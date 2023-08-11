@@ -71,23 +71,26 @@ button:hover {
 
 .parts-list {
     width: 25%;
-    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     height: 500px;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 0.8rem;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background-color: gold;
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: content-box;
 }
+
 .parts-list h2 {
     text-transform: capitalize;
 
@@ -118,9 +121,7 @@ button:hover {
     border: 2px dashed #ddd;
     border-radius: 5px;
     height: 500px;
-    /* min-height: 300px; */
     position: relative;
-    /* margin-top: 50px; */
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     /* border: 2px solid blue; */
 }
@@ -140,31 +141,13 @@ button:hover {
     ;
 }
 
-/* Style final product view */
-/* .final-product {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.final-product img {
-    width: 18%;
-    margin: 5px;
-} */
-
-/* Other styles */
-
-
-.page h1 {
-    margin-bottom: 20px;
-}
 
 /* assembled parts imgs */
-.assembled-part-card img{
+.assembled-part-card img {
     border: 2px dashed black;
     padding: 5px;
 }
+
 .roof {
     position: absolute;
     left: 3rem;
@@ -260,20 +243,41 @@ button:hover {
     }
 
     .assembly-stage {
-        width: 100%;
+        width: 95%;
         height: 300px;
     }
 
     .header .heading {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        padding-left: 20px;
     }
 
     .final-view-button button {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
+
+    .parts-list {
+        height: 200px;
+    }
+
+
 }
 
 @media screen and (max-width:450px) {
+
+    .header .heading {
+        font-size: 1.3rem;
+        white-space: wrap;
+    }
+
+    .final-view-button button {
+        font-size: 0.8rem;
+    }
+
+    .final-view-button button img {
+        width: 40%;
+    }
+
     .roof {
         left: 0;
         top: 3.19rem;
