@@ -161,6 +161,10 @@ button:hover {
 }
 
 /* assembled parts imgs */
+.assembled-part-card img{
+    border: 2px dashed black;
+    padding: 5px;
+}
 .roof {
     position: absolute;
     left: 3rem;
